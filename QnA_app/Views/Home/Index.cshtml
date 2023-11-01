@@ -1,0 +1,13 @@
+﻿@model QnA_app.Models.QuestionsTbl
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To Ask Me</h1>
+    <p>Here You can Ask your Querries To People</p>
+    <div>
+        <form asp-action="Index" method="post">
+            <textarea class="form-control-plaintext" asp-for="Question"></textarea>
+            <span asp-validation-for="Question"></span>
+            <input type="Submit" class="btn btn-primary" value="Ask"/>
+        </form>
+    </div>
+</div>

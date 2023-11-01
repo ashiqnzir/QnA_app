@@ -1,0 +1,168 @@
+﻿@model QnA_app.Models.SignupTbl
+@{
+    Layout = "~/Views/Shared/AuthLayout.cshtml";
+}
+<head>
+    <style>
+        /* Style for tabs and tab content */
+        .tab {
+            display: none;
+            width:50%;
+        }
+
+            .tab.active {
+                display: block;
+              
+            }
+
+        /* Style for tab links */
+        .tab-link {
+            cursor: pointer;
+            padding: 5px 5px;
+            background-color: #f1f1f1;
+            border: 2px solid #ccc;
+            display: inline-block;
+            margin: 0 5px;
+            border-radius: 5px;
+       
+
+        }
+       
+
+            .tab-link .active{
+                background: #ccc;
+                color:red;
+
+             
+            }
+
+                .tab-link:hover{
+                    background:grey;
+                }
+
+    
+        /* Style for form input fields */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .view{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+        }
+
+        #tabs{
+            margin:10px 0;
+            display:flex;
+            justify-content:space-evenly;
+            align-items:center;
+           
+            width:50%;
+
+        }
+      
+    </style>
+ 
+</head>
+<div class="view">
+    <div id="tabs">
+        <div class="tab-link" onclick="openTab('loginTab')">Login</div>
+        <div class="tab-link" onclick="openTab('signupTab')">Sign Up</div>
+    </div>
+
+    <div id="loginTab" class="tab">
+        <!-- Login Form -->
+        <h2>Login</h2>
+        <form asp-action="Signin" method="post">
+            <!-- Add your login form fields here -->
+            <div class="form-group">
+                <label asp-for="Username">Username</label>
+                <input type="text"  asp-for="Username" class="form-control" placeholder="Enter your username" required>
+                <span asp-validation-for="Username"></span>
+            </div>
+
+           <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password"></span>
+                <input type="password" asp-for="Password" class="form-control" placeholder="Reenter your password" required>
+            </div> 
+
+            <button type="submit" class="btn btn-primary">Login</button>
+          
+        </form>
+    </div>
+
+    <div id="signupTab" class="tab">
+        <!-- Sign Up Form -->
+        <h2>Sign Up</h2>
+        <form asp-action="Signup" method="post">
+            <!-- Add your signup form fields here -->
+            <div class="form-group">
+                <label asp-for="Username">Username</label>
+                <span asp-validation-for="Username"></span>
+                <input type="text" asp-for="Username" class="form-control" placeholder="Enter your username" required>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password"></span>
+                <input type="password" asp-for="Password" class="form-control" placeholder="Enter your password" required>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Confirmpassword">Confirm Password</label>
+                <span asp-validation-for="Confirmpassword"></span>
+                <input type="password"  asp-for="Confirmpassword" class="form-control" placeholder="Confirm your password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+    </div>
+
+
+    <script>
+        function openTab(tabId) {
+            // Hide all tabs
+            let tabs = document.getElementsByClassName("tab");
+            for (let tab of tabs) {
+                tab.classList.remove("active");
+            }
+
+            // Deactivate all tab links
+            let tabLinks = document.getElementsByClassName("tab-link");
+            for (let link of tabLinks) {
+                link.classList.remove("active");
+            }
+
+            // Show the selected tab and activate its link
+            document.getElementById(tabId).classList.add("active");
+            document.querySelector(`[onclick="openTab('${tabId}']`).classList.add("active");
+        }
+
+        // Show the initial tab when the page loads
+        openTab("loginTab");
+    </script>
+

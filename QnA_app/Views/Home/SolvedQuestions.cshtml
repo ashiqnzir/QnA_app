@@ -1,0 +1,45 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+               Question
+            </th>
+            <th>
+                Asked by
+            </th>
+            <th>
+               Answer
+            </th>
+            <th>
+                Answer by
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+             @item.Question
+            </td>
+            <td>
+                @item.Questionby
+            </td>
+            <td>
+                @item.Answer
+            </td>
+                <td>
+                    @item.Answerby
+                </td>
+
+            </tr>
+            
+        }
+    </tbody>
+   </table>
